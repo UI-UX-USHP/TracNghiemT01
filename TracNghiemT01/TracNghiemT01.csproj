@@ -17,13 +17,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admins\Data\" />
-    <Folder Include="Areas\GiangViens\Controllers\" />
-    <Folder Include="Areas\GiangViens\Data\" />
-    <Folder Include="Areas\GiangViens\Views\" />
-    <Folder Include="Areas\SInhViens\Controllers\" />
-    <Folder Include="Areas\SInhViens\Data\" />
-    <Folder Include="Areas\SInhViens\Views\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\GiangVien\Controllers\" />
+    <Folder Include="Areas\GiangVien\Data\" />
+    <Folder Include="Areas\GiangVien\Views\" />
+    <Folder Include="Areas\SInhVien\Controllers\" />
+    <Folder Include="Areas\SInhVien\Data\" />
+    <Folder Include="Areas\SInhVien\Views\" />
   </ItemGroup>
 
 </Project>

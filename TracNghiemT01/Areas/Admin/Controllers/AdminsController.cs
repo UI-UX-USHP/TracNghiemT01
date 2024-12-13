@@ -7,25 +7,25 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TracNghiemT01.Models;
 
-namespace TracNghiemT01.Areas.Admins.Controllers
+namespace TracNghiemT01.Areas.Admin.Controllers
 {
     [Area("Admins")]
-    public class AdminController : Controller
+    public class AdminsController : Controller
     {
         private readonly DbTracNghiemContext _context;
 
-        public AdminController(DbTracNghiemContext context)
+        public AdminsController(DbTracNghiemContext context)
         {
             _context = context;
         }
 
-        // GET: Admins/Admin
+        // GET: Admins/Admins
         public async Task<IActionResult> Index()
         {
             return View(await _context.Admins.ToListAsync());
         }
 
-        // GET: Admins/Admin/Details/5
+        // GET: Admins/Admins/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -43,18 +43,18 @@ namespace TracNghiemT01.Areas.Admins.Controllers
             return View(admin);
         }
 
-        // GET: Admins/Admin/Create
+        // GET: Admins/Admins/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admins/Admin/Create
+        // POST: Admins/Admins/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TenDangNhap,MatKhau,HoTen,Email,ThuTuHienThi,TònTai")] Admin admin)
+        public async Task<IActionResult> Create([Bind("Id,TenDangNhap,MatKhau,HoTen,Email,ThuTuHienThi,TònTai")] TracNghiemT01.Models.Admin admin)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace TracNghiemT01.Areas.Admins.Controllers
             return View(admin);
         }
 
-        // GET: Admins/Admin/Edit/5
+        // GET: Admins/Admins/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -81,12 +81,12 @@ namespace TracNghiemT01.Areas.Admins.Controllers
             return View(admin);
         }
 
-        // POST: Admins/Admin/Edit/5
+        // POST: Admins/Admins/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TenDangNhap,MatKhau,HoTen,Email,ThuTuHienThi,TònTai")] Admin admin)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TenDangNhap,MatKhau,HoTen,Email,ThuTuHienThi,TònTai")] TracNghiemT01.Models.Admin admin)
         {
             if (id != admin.Id)
             {
@@ -116,7 +116,7 @@ namespace TracNghiemT01.Areas.Admins.Controllers
             return View(admin);
         }
 
-        // GET: Admins/Admin/Delete/5
+        // GET: Admins/Admins/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,7 +134,7 @@ namespace TracNghiemT01.Areas.Admins.Controllers
             return View(admin);
         }
 
-        // POST: Admins/Admin/Delete/5
+        // POST: Admins/Admins/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
