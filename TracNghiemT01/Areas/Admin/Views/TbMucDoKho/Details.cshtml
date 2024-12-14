@@ -1,0 +1,36 @@
+﻿@model TracNghiemT01.Models.TbMucDoKho
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TbMucDoKho</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TenMucDo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TenMucDo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ThuTuHienThi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ThuTuHienThi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TonTai)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TonTai)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdMucDoKho">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

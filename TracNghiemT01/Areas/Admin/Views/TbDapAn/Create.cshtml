@@ -1,0 +1,59 @@
+﻿@model TracNghiemT01.Models.TbDapAn
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TbDapAn</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdDapAn" class="control-label"></label>
+                <input asp-for="IdDapAn" class="form-control" />
+                <span asp-validation-for="IdDapAn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IdCauHoi" class="control-label"></label>
+                <select asp-for="IdCauHoi" class ="form-control" asp-items="ViewBag.IdCauHoi"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NoiDung" class="control-label"></label>
+                <input asp-for="NoiDung" class="form-control" />
+                <span asp-validation-for="NoiDung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DapAnDung" class="control-label"></label>
+                <input asp-for="DapAnDung" class="form-control" />
+                <span asp-validation-for="DapAnDung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThuTu" class="control-label"></label>
+                <input asp-for="ThuTu" class="form-control" />
+                <span asp-validation-for="ThuTu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThuTuHienThi" class="control-label"></label>
+                <input asp-for="ThuTuHienThi" class="form-control" />
+                <span asp-validation-for="ThuTuHienThi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TonTai" class="control-label"></label>
+                <input asp-for="TonTai" class="form-control" />
+                <span asp-validation-for="TonTai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

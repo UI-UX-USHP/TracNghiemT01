@@ -1,0 +1,45 @@
+﻿@model TracNghiemT01.Models.TbMucDoKho
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>TbMucDoKho</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdMucDoKho" class="control-label"></label>
+                <input asp-for="IdMucDoKho" class="form-control" />
+                <span asp-validation-for="IdMucDoKho" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenMucDo" class="control-label"></label>
+                <input asp-for="TenMucDo" class="form-control" />
+                <span asp-validation-for="TenMucDo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ThuTuHienThi" class="control-label"></label>
+                <input asp-for="ThuTuHienThi" class="form-control" />
+                <span asp-validation-for="ThuTuHienThi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TonTai" class="control-label"></label>
+                <input asp-for="TonTai" class="form-control" />
+                <span asp-validation-for="TonTai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

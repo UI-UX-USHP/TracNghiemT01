@@ -10,23 +10,23 @@ using TracNghiemT01.Models;
 namespace TracNghiemT01.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class TbBaiThiCauHoisController : Controller
+    public class TbDapAnController : Controller
     {
         private readonly DbTracNghiemContext _context;
 
-        public TbBaiThiCauHoisController(DbTracNghiemContext context)
+        public TbDapAnController(DbTracNghiemContext context)
         {
             _context = context;
         }
 
-        // GET: Admins/TbBaiThiCauHois
+        // GET: Admin/TbDapAn
         public async Task<IActionResult> Index()
         {
-            var dbTracNghiemContext = _context.TbBaiThiCauHois.Include(t => t.IdBaiThiNavigation).Include(t => t.IdCauHoiNavigation);
+            var dbTracNghiemContext = _context.TbDapAns.Include(t => t.IdCauHoiNavigation);
             return View(await dbTracNghiemContext.ToListAsync());
         }
 
-        // GET: Admins/TbBaiThiCauHois/Details/5
+        // GET: Admin/TbDapAn/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -34,45 +34,42 @@ namespace TracNghiemT01.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var tbBaiThiCauHoi = await _context.TbBaiThiCauHois
-                .Include(t => t.IdBaiThiNavigation)
+            var tbDapAn = await _context.TbDapAns
                 .Include(t => t.IdCauHoiNavigation)
-                .FirstOrDefaultAsync(m => m.IdBaiThiCauHoi == id);
-            if (tbBaiThiCauHoi == null)
+                .FirstOrDefaultAsync(m => m.IdDapAn == id);
+            if (tbDapAn == null)
             {
                 return NotFound();
             }
 
-            return View(tbBaiThiCauHoi);
+            return View(tbDapAn);
         }
 
-        // GET: Admins/TbBaiThiCauHois/Create
+        // GET: Admin/TbDapAn/Create
         public IActionResult Create()
         {
-            ViewData["IdBaiThi"] = new SelectList(_context.TbBaiThis, "IdBaiThi", "IdBaiThi");
             ViewData["IdCauHoi"] = new SelectList(_context.TbCauHois, "IdCauHoi", "IdCauHoi");
             return View();
         }
 
-        // POST: Admins/TbBaiThiCauHois/Create
+        // POST: Admin/TbDapAn/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdBaiThiCauHoi,IdCauHoi,IdBaiThi,Diem,ThuTuHienThi,TonTai")] TbBaiThiCauHoi tbBaiThiCauHoi)
+        public async Task<IActionResult> Create([Bind("IdDapAn,IdCauHoi,NoiDung,DapAnDung,ThuTu,ThuTuHienThi,TonTai")] TbDapAn tbDapAn)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(tbBaiThiCauHoi);
+                _context.Add(tbDapAn);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdBaiThi"] = new SelectList(_context.TbBaiThis, "IdBaiThi", "IdBaiThi", tbBaiThiCauHoi.IdBaiThi);
-            ViewData["IdCauHoi"] = new SelectList(_context.TbCauHois, "IdCauHoi", "IdCauHoi", tbBaiThiCauHoi.IdCauHoi);
-            return View(tbBaiThiCauHoi);
+            ViewData["IdCauHoi"] = new SelectList(_context.TbCauHois, "IdCauHoi", "IdCauHoi", tbDapAn.IdCauHoi);
+            return View(tbDapAn);
         }
 
-        // GET: Admins/TbBaiThiCauHois/Edit/5
+        // GET: Admin/TbDapAn/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -80,24 +77,23 @@ namespace TracNghiemT01.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var tbBaiThiCauHoi = await _context.TbBaiThiCauHois.FindAsync(id);
-            if (tbBaiThiCauHoi == null)
+            var tbDapAn = await _context.TbDapAns.FindAsync(id);
+            if (tbDapAn == null)
             {
                 return NotFound();
             }
-            ViewData["IdBaiThi"] = new SelectList(_context.TbBaiThis, "IdBaiThi", "IdBaiThi", tbBaiThiCauHoi.IdBaiThi);
-            ViewData["IdCauHoi"] = new SelectList(_context.TbCauHois, "IdCauHoi", "IdCauHoi", tbBaiThiCauHoi.IdCauHoi);
-            return View(tbBaiThiCauHoi);
+            ViewData["IdCauHoi"] = new SelectList(_context.TbCauHois, "IdCauHoi", "IdCauHoi", tbDapAn.IdCauHoi);
+            return View(tbDapAn);
         }
 
-        // POST: Admins/TbBaiThiCauHois/Edit/5
+        // POST: Admin/TbDapAn/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdBaiThiCauHoi,IdCauHoi,IdBaiThi,Diem,ThuTuHienThi,TonTai")] TbBaiThiCauHoi tbBaiThiCauHoi)
+        public async Task<IActionResult> Edit(int id, [Bind("IdDapAn,IdCauHoi,NoiDung,DapAnDung,ThuTu,ThuTuHienThi,TonTai")] TbDapAn tbDapAn)
         {
-            if (id != tbBaiThiCauHoi.IdBaiThiCauHoi)
+            if (id != tbDapAn.IdDapAn)
             {
                 return NotFound();
             }
@@ -106,12 +102,12 @@ namespace TracNghiemT01.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(tbBaiThiCauHoi);
+                    _context.Update(tbDapAn);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!TbBaiThiCauHoiExists(tbBaiThiCauHoi.IdBaiThiCauHoi))
+                    if (!TbDapAnExists(tbDapAn.IdDapAn))
                     {
                         return NotFound();
                     }
@@ -122,12 +118,11 @@ namespace TracNghiemT01.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["IdBaiThi"] = new SelectList(_context.TbBaiThis, "IdBaiThi", "IdBaiThi", tbBaiThiCauHoi.IdBaiThi);
-            ViewData["IdCauHoi"] = new SelectList(_context.TbCauHois, "IdCauHoi", "IdCauHoi", tbBaiThiCauHoi.IdCauHoi);
-            return View(tbBaiThiCauHoi);
+            ViewData["IdCauHoi"] = new SelectList(_context.TbCauHois, "IdCauHoi", "IdCauHoi", tbDapAn.IdCauHoi);
+            return View(tbDapAn);
         }
 
-        // GET: Admins/TbBaiThiCauHois/Delete/5
+        // GET: Admin/TbDapAn/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,36 +130,35 @@ namespace TracNghiemT01.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var tbBaiThiCauHoi = await _context.TbBaiThiCauHois
-                .Include(t => t.IdBaiThiNavigation)
+            var tbDapAn = await _context.TbDapAns
                 .Include(t => t.IdCauHoiNavigation)
-                .FirstOrDefaultAsync(m => m.IdBaiThiCauHoi == id);
-            if (tbBaiThiCauHoi == null)
+                .FirstOrDefaultAsync(m => m.IdDapAn == id);
+            if (tbDapAn == null)
             {
                 return NotFound();
             }
 
-            return View(tbBaiThiCauHoi);
+            return View(tbDapAn);
         }
 
-        // POST: Admins/TbBaiThiCauHois/Delete/5
+        // POST: Admin/TbDapAn/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tbBaiThiCauHoi = await _context.TbBaiThiCauHois.FindAsync(id);
-            if (tbBaiThiCauHoi != null)
+            var tbDapAn = await _context.TbDapAns.FindAsync(id);
+            if (tbDapAn != null)
             {
-                _context.TbBaiThiCauHois.Remove(tbBaiThiCauHoi);
+                _context.TbDapAns.Remove(tbDapAn);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TbBaiThiCauHoiExists(int id)
+        private bool TbDapAnExists(int id)
         {
-            return _context.TbBaiThiCauHois.Any(e => e.IdBaiThiCauHoi == id);
+            return _context.TbDapAns.Any(e => e.IdDapAn == id);
         }
     }
 }

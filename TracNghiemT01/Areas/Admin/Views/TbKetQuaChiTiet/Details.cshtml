@@ -1,0 +1,66 @@
+﻿@model TracNghiemT01.Models.TbKetQuaChiTiet
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TbKetQuaChiTiet</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DapAnChon)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DapAnChon)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DapAnDienKhuyet)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DapAnDienKhuyet)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DapAnSxthuTu)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.DapAnSxthuTu)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsCorrect)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsCorrect)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ThuTuHienThi)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ThuTuHienThi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TonTai)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TonTai)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdCauHoiNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdCauHoiNavigation.IdCauHoi)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdKetQuaNavigation)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdKetQuaNavigation.IdKetQua)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.IdKetQuaChiTiet">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
