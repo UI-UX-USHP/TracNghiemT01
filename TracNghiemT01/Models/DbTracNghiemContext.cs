@@ -281,12 +281,14 @@ public partial class DbTracNghiemContext : DbContext
         modelBuilder.Entity<TbSinhVien>(entity =>
         {
             entity.HasKey(e => e.IdSinhVien);
+            entity.ToTable("Tb.SinhVien");
 
-            entity.ToTable("tb.SinhVien");
-
+            // Xóa dòng ValueGeneratedNever() này và thay thế bằng UseIdentityColumn()
             entity.Property(e => e.IdSinhVien)
-                .ValueGeneratedNever()
-                .HasColumnName("IdSInhVien");
+                .HasColumnName("IdSInhVien")
+                .UseIdentityColumn(); // Thêm dòng này để tự động tăng ID
+
+            // Giữ nguyên các cấu hình khác
             entity.Property(e => e.Email).HasMaxLength(225);
             entity.Property(e => e.MatKhau)
                 .HasMaxLength(225)
@@ -300,6 +302,7 @@ public partial class DbTracNghiemContext : DbContext
                 .HasMaxLength(10)
                 .IsFixedLength();
 
+            // Các relationship configurations
             entity.HasOne(d => d.IdBaiThiNavigation).WithMany(p => p.TbSinhViens)
                 .HasForeignKey(d => d.IdBaiThi)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -313,7 +316,6 @@ public partial class DbTracNghiemContext : DbContext
                 .HasForeignKey(d => d.IdKetQuaChiTiet)
                 .HasConstraintName("FK_tb.SinhVien_tb.KetQuaChiTiet");
         });
-
         OnModelCreatingPartial(modelBuilder);
     }
 

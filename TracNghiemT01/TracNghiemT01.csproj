@@ -20,10 +20,8 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\GiangVien\Controllers\" />
     <Folder Include="Areas\GiangVien\Data\" />
-    <Folder Include="Areas\GiangVien\Views\" />
-    <Folder Include="Areas\SInhVien\Controllers\" />
-    <Folder Include="Areas\SInhVien\Data\" />
-    <Folder Include="Areas\SInhVien\Views\" />
+    <Folder Include="Areas\SinhVien\Controllers\" />
+    <Folder Include="Areas\SinhVien\Data\" />
   </ItemGroup>
 
 </Project>

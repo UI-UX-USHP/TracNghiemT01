@@ -1,0 +1,125 @@
+﻿@model TracNghiemT01.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Đăng ký tài khoản";
+}
+
+<div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Đăng ký tài khoản</h4>
+            </div>
+            <div class="card-body">
+                @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        @TempData["ErrorMessage"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <ul class="mb-0">
+                            @foreach (var modelError in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                            {
+                                <li>@modelError.ErrorMessage</li>
+                            }
+                        </ul>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                <form asp-action="Register" method="post">
+                    <div class="form-group mb-3">
+                        <label asp-for="Role" class="form-label"></label>
+                        <select asp-for="Role" class="form-select" id="roleSelect">
+                            <option value="">-- Chọn vai trò --</option>
+                            <option value="GiangVien">Giảng viên</option>
+                            <option value="SinhVien">Sinh viên</option>
+                        </select>
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="HoTen" class="form-label"></label>
+                        <input asp-for="HoTen" class="form-control" />
+                        <span asp-validation-for="HoTen" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="form-label"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="Sdt" class="form-label"></label>
+                        <input asp-for="Sdt" class="form-control" />
+                        <span asp-validation-for="Sdt" class="text-danger"></span>
+                    </div>
+
+                    <!-- Fields cho giảng viên -->
+                    <div id="giangVienFields" style="display:none;">
+                        <div class="form-group mb-3">
+                            <label asp-for="IdKhoa" class="form-label"></label>
+                            <select asp-for="IdKhoa" class="form-select" asp-items="ViewBag.Khoas">
+                                <option value="">-- Chọn khoa --</option>
+                            </select>
+                            <span asp-validation-for="IdKhoa" class="text-danger"></span>
+                        </div>
+
+                       
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="TenDangNhap" class="form-label"></label>
+                        <input asp-for="TenDangNhap" class="form-control" />
+                        <span asp-validation-for="TenDangNhap" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="MatKhau" class="form-label"></label>
+                        <input asp-for="MatKhau" class="form-control" type="password" />
+                        <span asp-validation-for="MatKhau" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label asp-for="XacNhanMatKhau" class="form-label"></label>
+                        <input asp-for="XacNhanMatKhau" class="form-control" type="password" />
+                        <span asp-validation-for="XacNhanMatKhau" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <button type="submit" class="btn btn-primary w-100">Đăng ký</button>
+                    </div>
+
+                    <div class="text-center">
+                        <a asp-action="Login">Đã có tài khoản? Đăng nhập ngay</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $('#roleSelect').change(function () {
+                if ($(this).val() === 'GiangVien') {
+                    $('#giangVienFields').show();
+                } else {
+                    $('#giangVienFields').hide();
+                }
+            });
+
+            // Tự động ẩn thông báo sau 5 giây
+            setTimeout(function () {
+                $('.alert').alert('close');
+            }, 5000);
+        });
+    </script>
+}
