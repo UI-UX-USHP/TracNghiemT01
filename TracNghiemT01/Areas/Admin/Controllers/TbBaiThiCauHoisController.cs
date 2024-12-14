@@ -9,7 +9,7 @@ using TracNghiemT01.Models;
 
 namespace TracNghiemT01.Areas.Admin.Controllers
 {
-    [Area("Admins")]
+    [Area("Admin")]
     public class TbBaiThiCauHoisController : Controller
     {
         private readonly DbTracNghiemContext _context;

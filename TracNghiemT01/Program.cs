@@ -1,11 +1,17 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
+using TracNghiemT01.Models; // Thêm namespace DbTracNghiemContext
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Thêm các dịch vụ vào container
 builder.Services.AddControllersWithViews();
 
-// Thêm các service Authentication
+// Đăng ký DbContext với chuỗi kết nối từ appsettings.json
+builder.Services.AddDbContext<DbTracNghiemContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Thêm Authentication
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -29,7 +35,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 // Đảm bảo thứ tự đúng của middleware Authentication và Authorization
-app.UseAuthentication(); // Thêm dòng này
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>
